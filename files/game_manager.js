@@ -2,7 +2,7 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.size         = size; // Size of the grid
   this.inputManager = new InputManager;
   this.scoreManager = new ScoreManager;
-  this.actuator     = new Actuator;
+  this.actuator     = new Actuator(this.scoreManager);
 
   this.startTiles   = 2;
 
@@ -53,21 +53,28 @@ GameManager.prototype.clearTile2 = function () {
 
 // Restart the game
 GameManager.prototype.restart = function () {
+  //清除over标识
+  this.scoreManager.setOver(false);
+  //清除当前分数
+  this.scoreManager.setScore(0);
+  //清除记录记录的方块位置数组
+  this.scoreManager.setGridCells([]);  
   this.actuator.restart();
   this.setup();
 };
 
 // Set up the game
 GameManager.prototype.setup = function () {
-  this.grid         = new Grid(this.size);
+  this.grid         = new Grid(this.size, this.scoreManager.getGridCells());
 
-  this.score        = 0;
-  this.over         = false;
+  this.score        = this.scoreManager.getScore() || 0;
+  this.over         = this.scoreManager.getOver() || false;
   this.won          = false;
 
-  // Add the initial tiles
-  this.addStartTiles();
-
+  if (this.scoreManager.getGridCells().length <= 0) {
+    // Add the initial tiles
+    this.addStartTiles();
+  }
   // Update the actuator
   this.actuate();
 };
@@ -180,6 +187,7 @@ GameManager.prototype.move = function (direction) {
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
+      this.scoreManager.setOver(this.over);
     }
 
     this.actuate();

@@ -1,11 +1,12 @@
-﻿function HTMLActuator() {
+﻿function HTMLActuator(scoreManager) {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
   this.sharingContainer = document.querySelector(".score-sharing");
 
-  this.score = 0;
+  this.scoreManager = scoreManager;
+  this.score = this.scoreManager.getScore() || 0;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -24,6 +25,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
+
+    self.scoreManager.setScore(metadata.score);
+    self.scoreManager.setGridCells(grid.cells);
 
     if (metadata.over) self.message(false); // You lose
     if (metadata.won) self.message(true); // You win!

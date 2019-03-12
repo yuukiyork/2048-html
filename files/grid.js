@@ -1,9 +1,11 @@
-function Grid(size) {
+function Grid(size, cells) {
   this.size = size;
 
-  this.cells = [];
+  this.cells = cells || [];
 
-  this.build();
+  if (this.cells.length <= 0) {
+    this.build();
+  }
 }
 
 // Build a grid of the specified size

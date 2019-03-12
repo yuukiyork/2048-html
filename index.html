@@ -1,15 +1,14 @@
-﻿<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+﻿<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <title>2048游戏</title>
-
-  
   <link rel="shortcut icon" href="./files/favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-
   <meta property="og:title" content="2048 game">
   <meta property="og:site_name" content="2048 game">
   <meta property="og:description" content="Join the numbers and get to the 2048 tile!">
@@ -27,10 +26,10 @@
       </div>
     </div>
     <div class="heading">
-    <!--<p style="float:left;" class="game-intro">移动数字使相同的合并，得到<strong>2048获胜!</strong></p>-->
-	<div class="clear-tile2">清除一次</div>
-	<div class="clear" onclick="clearScore()">清除记录</div>
-	</div>
+      <!--<p style="float:left;" class="game-intro">移动数字使相同的合并，得到<strong>2048获胜!</strong></p>-->
+      <div class="clear-tile2">清除一次</div>
+      <div class="clear" onclick="clearScore()">清除记录</div>
+    </div>
     <div class="game-container">
       <div class="game-message">
         <p></p>
@@ -73,15 +72,10 @@
 
   <script type="text/javascript" charset="utf-8"></script> 
   <link href="./files/main.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="./files/favicon.ico">
   <link rel="apple-touch-icon" href="./files/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta property="og:title" content="2048 game">
-  <meta property="og:site_name" content="2048 game">
-  <meta property="og:description" content="Join the numbers and get to the 2048 tile!">
-  <meta property="og:image" content="meta/og_image.png">
   <script type="text/javascript" charset="utf-8"></script> 
   <script src="./files/animframe_polyfill.js"></script>
   <script src="./files/keyboard_input_manager.js"></script>
@@ -96,4 +90,5 @@
 		localStorage.clear();//清除bestScore的值
 	}
   </script>
-</body></html>
+</body>
+</html>
