@@ -10,6 +10,7 @@ function GameManager(size, InputManager, Actuator, ScoreManager) {
   this.inputManager.on("restart", this.restart.bind(this));
   //20190310新添加代码
   this.inputManager.on("clearTile2", this.clearTile2.bind(this));
+  this.inputManager.on("clearScore", this.clearScore.bind(this));
 
   this.setup();
 }
@@ -43,12 +44,17 @@ GameManager.prototype.clearTile2 = function () {
   var container = this.actuator.tileContainer;
   var children = container.children;
   for (var i = children.length - 1; i >= 0 ; i--) {
-    console.log(children[i]);
     if (children[i].textContent == '2') {
       container.removeChild(children[i]);
     }
   }
 
+};
+
+GameManager.prototype.clearScore = function () {
+  var zero = 0;
+  this.scoreManager.set(zero);
+  this.actuator.updateBestScore(zero);
 };
 
 // Restart the game
@@ -64,17 +70,19 @@ GameManager.prototype.restart = function () {
 };
 
 // Set up the game
-GameManager.prototype.setup = function () {
-  this.grid         = new Grid(this.size, this.scoreManager.getGridCells());
-
+GameManager.prototype.setup = function () {  
   this.score        = this.scoreManager.getScore() || 0;
   this.over         = this.scoreManager.getOver() || false;
   this.won          = false;
-
-  if (this.scoreManager.getGridCells().length <= 0) {
+  
+  if (this.score > 0) {
+    this.grid       = new Grid(this.size, this.scoreManager.getGridCells());
+  } else {
+    this.grid       = new Grid(this.size, []);
     // Add the initial tiles
     this.addStartTiles();
   }
+
   // Update the actuator
   this.actuate();
 };

@@ -53,17 +53,20 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
 
-  var retry = document.getElementsByClassName("retry-button")[0];
+  var retry = document.getElementById("retry-button");
   retry.addEventListener("click", this.restart.bind(this));
   retry.addEventListener("touchend", this.restart.bind(this));
   //20190310新添加代码
-  var clearTile2 = document.getElementsByClassName("clear-tile2")[0];
+  var clearTile2 = document.getElementById("clear-tile2");
   clearTile2.addEventListener("click", this.clearTile2.bind(this));
   clearTile2.addEventListener("touchend", this.clearTile2.bind(this));
+  var clearScore = document.getElementById("clear-score");
+  clearScore.addEventListener("click", this.clearScore.bind(this));
+  clearScore.addEventListener("touchend", this.clearScore.bind(this));
 
   // Listen to swipe events
   var touchStartClientX, touchStartClientY;
-  var gameContainer = document.getElementsByClassName("game-container")[0];
+  var gameContainer = document.getElementById("game-container");
 
   gameContainer.addEventListener("touchstart", function (event) {
     if (event.touches.length > 1) return;
@@ -102,4 +105,8 @@ KeyboardInputManager.prototype.restart = function (event) {
 KeyboardInputManager.prototype.clearTile2 = function (event) {
   event.preventDefault();
   this.emit("clearTile2");
+};
+KeyboardInputManager.prototype.clearScore = function (event) {
+  event.preventDefault();
+  this.emit("clearScore");
 };

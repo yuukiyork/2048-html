@@ -64,7 +64,7 @@ h1.title {
   border-radius: 3px;
   color: white;
   margin-top: 8px;
-  text-align: center; }
+  text-align: right; }
   .score-container:after, .best-container:after {
     position: absolute;
     width: 100%;
@@ -77,8 +77,7 @@ h1.title {
     color: #eee4da; }
   .score-container .score-addition, .best-container .score-addition {
     position: absolute;
-    right: 30px;
-    color: red;
+    right: 10px;
     font-size: 25px;
     line-height: 25px;
     font-weight: bold;
@@ -89,7 +88,8 @@ h1.title {
     animation: move-up 600ms ease-in;
     -webkit-animation-fill-mode: both;
     -moz-animation-fill-mode: both;
-    animation: both; }
+    /* animation: both;  */
+  }
 
 .score-container:after {
   content: "Score"; }
@@ -828,7 +828,7 @@ hr {
       margin-left: 9px;
       float: right;
     }
-    .clear-tile2 {
+    #clear-tile2 {
       display: block;
       background: #8f7a66;
       border-radius: 3px;
@@ -837,6 +837,5 @@ hr {
       color: #f9f6f2;
       height: 40px;
       line-height: 42px;
-      margin-left: 9px;
       float: left;
     }
